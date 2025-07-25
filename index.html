@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <title>Quản lý đơn hàng</title>
+</head>
+<body>
+  <div id="app">
+    <div id="login-screen" class="screen">
+      <h2>🔐 Vui lòng nhập mã truy cập-NHẤT TIÊN-PM Quản lý đơn trong ngày</h2>
+      <input type="password" id="passcode" placeholder="Nhập 6 số..." maxlength="6" />
+      <button onclick="checkPass()">Đăng Nhập</button>
+      <div id="pass-error"></div>
+    </div>
+
+    <div id="main-screen" class="screen hidden">
+      <div class="topbar">
+        <h2>📦 Quản lý đơn</h2>
+        <span id="clock"></span>
+      </div>
+
+      <div class="menu-buttons">
+        <button onclick="showNhapDon()">➕ Tạo Đơn Hàng</button>
+        <button onclick="showDanhSach()">📋 Đơn Trong Ngày</button>
+        <button onclick="showTraCuu()">🔍 Tra Cứu KH</button>
+        <button onclick="exportData()">📤 Xuất Dữ liệu</button>
+        <button onclick="henGapLai()"> 👋 Hẹn Gặp Lại</button>
+      </div>
+    </div>
+
+    <div id="order-screen" class="screen hidden"></div>
+  </div>
+  <script src="app.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function (registration) {
+          console.log('✅ ServiceWorker registered with scope:', registration.scope);
+        }, function (err) {
+          console.log('❌ ServiceWorker registration failed:', err);
+        });
+    });
+  }
+  </script>
+</body>
+</html>
